@@ -22,6 +22,5 @@ class JsLoader implements IRoute{
             App::body( $content );
             
         },array('get'),false);
-
     }
 }
