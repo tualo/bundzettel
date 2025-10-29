@@ -1,13 +1,16 @@
 <?php
+
 namespace Tualo\Office\Bundzettel\Routes;
 
 use Tualo\Office\Basic\TualoApplication as App;
 use Tualo\Office\Basic\Route as BasicRoute;
 use Tualo\Office\Basic\IRoute;
 
-class GetJobCodes implements IRoute{
-    public static function register(){
-        BasicRoute::add('/bundzettel/jobcodes/(?P<dateiname>[\w\-\_]+)/(?P<auftrag>[\w\-\_]+)',function($matches){
+class GetJobCodes extends \Tualo\Office\Basic\RouteWrapper
+{
+    public static function register()
+    {
+        BasicRoute::add('/bundzettel/jobcodes/(?P<dateiname>[\w\-\_]+)/(?P<auftrag>[\w\-\_]+)', function ($matches) {
             App::contenttype('application/json');
 
             $db = App::get('session')->getDB();
@@ -86,10 +89,8 @@ class GetJobCodes implements IRoute{
             
 
             ');
-            App::set( "success",true );
-            App::set( "data", $codes );
-            
-        },array('get'),true);
-
+            App::set("success", true);
+            App::set("data", $codes);
+        }, array('get'), true);
     }
 }
